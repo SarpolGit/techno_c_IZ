@@ -13,6 +13,7 @@ jobs:
       run: sudo apt-get install -y valgrind
     - name: Install googletest
       run: sudo apt-get install -y googletest
+    - name: More install for googletest
       run: sudo apt-get install libgtest-dev
     - name: Config
       run: sh config.sh
