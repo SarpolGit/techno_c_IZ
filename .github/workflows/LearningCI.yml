@@ -15,3 +15,7 @@ jobs:
       run: sudo apt-get install -y googletest
     - name: Config
       run: sh config.sh
+    - name: Make
+      run: cd build && cmake .. && make
+     name: Test
+      run: cd build && make ./tests
