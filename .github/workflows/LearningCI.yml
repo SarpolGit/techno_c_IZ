@@ -11,5 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install valgrind
       run: sudo apt-get install -y valgrind
+    - name: Install googletest
+      run: sudo apt-get install -y googletest
     - name: Config
       run: sh config.sh
