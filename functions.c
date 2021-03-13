@@ -12,6 +12,13 @@ int is_positive(int number) { //Проверка ввода на положит�
     return -1;
 }
 
+char* NULL_exception() {
+    char error_text[] = "Exception";
+    char* error_string = (char*) malloc(sizeof(char)*10);
+    memcpy(error_string, error_text, sizeof(char)*10);    
+    return error_string;
+}
+
 char* translate_to_roman(int number_to_change, int* len){
     *len = 0;
 
@@ -29,13 +36,19 @@ char* translate_to_roman(int number_to_change, int* len){
         if(number_to_change / numbers[i] > 0){
             if(i % 2 ==0){
             count = number_to_change / numbers[i];
-            result_string = (char*)realloc(result_string,(*len)+count+1);
+            char* tmp_string = (char*)realloc(result_string,(*len) + count + 1);
+            if (tmp_string == NULL) return NULL_exception();
+            result_string = tmp_string;
+
                 for(int j = *len; j < *len+count; j++){
                     result_string[j] = letters[i][0];
                 }
+
             } else {
                 count = 2;
-                result_string = (char*)realloc(result_string, (*len)+count+1);
+                char* tmp_string = (char*)realloc(result_string,(*len) + count + 1);
+                if (tmp_string == NULL) return NULL_exception();
+                result_string = tmp_string;
                 result_string[*len] = letters[i][0];
                 result_string[*len+1] = letters[i][1];
             }
