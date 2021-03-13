@@ -19,6 +19,7 @@ target_link_libraries(main my_lib)
 enable_testing()
 find_package(GTest REQUIRED)
 
+include_directories(${GTEST_INCLUDE_DIRS})
 
 set(TESTS_EXE tests.cpp )
 
