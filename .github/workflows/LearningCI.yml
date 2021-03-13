@@ -17,5 +17,5 @@ jobs:
       run: sh config.sh
     - name: Make
       run: cd build && cmake .. && make
-     name: Test
+    - name: Tests
       run: cd build && make ./tests
