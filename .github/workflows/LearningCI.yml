@@ -20,4 +20,4 @@ jobs:
     - name: Make
       run: cd build && cmake .. && make
     - name: Tests
-      run: cd build && make ./tests
+      run: cd build && make ./tests && ./tests
