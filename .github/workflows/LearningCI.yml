@@ -22,6 +22,6 @@ jobs:
     - name: Make
       run: cd build && cmake .. && make
     - name: Run cppcheck
-      run: cppcheck --enable=all --supress=missingIncludeSystem *.c
+      run: cppcheck --enable=all --suppress=missingIncludeSystem *.c
     - name: Tests
       run: cd build && make ./tests && ./tests
