@@ -1,7 +1,7 @@
 name: 'All tests'
 on: [pull_request, push]
-    branches:
-      - IZ1
+  branches:
+    - IZ1
 
 jobs:
 
