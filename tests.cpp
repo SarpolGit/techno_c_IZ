@@ -1,35 +1,81 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-   #include "functions.h"
+#include "functions.h"
 }
 
-TEST (translate_to_roman, first_test) {
-    int len = 0;
-    char* test_str = translate_to_roman(129, &len);
-    ASSERT_STREQ("CXXIX", test_str);
-    ASSERT_EQ(5, len);
+TEST(translate_to_roman, first_test) {
+  int len = 0;
+  char* test_str = translate_to_roman(129, &len);
+  ASSERT_STREQ("CXXIX", test_str);
+  ASSERT_EQ(5, len);
+  free(test_str);
 }
 
-TEST (translate_to_roman, negative_int) {
-    int len = 0;
-    char* test_str = translate_to_roman(-123, &len);
-    ASSERT_STREQ("Invalid input", test_str);
-    ASSERT_EQ(0, len);
+TEST(translate_to_roman, second_test) {
+  int len = 0;
+  char* test_str = translate_to_roman(7, &len);
+  ASSERT_STREQ("VII", test_str);
+  ASSERT_EQ(3, len);
+  free(test_str);
 }
 
-TEST (is_positive, second_test){
-    int r = is_positive(100);
-    ASSERT_EQ(100, r);
+TEST(translate_to_roman, third_test) {
+  int len = 0;
+  char* test_str = translate_to_roman(4528, &len);
+  ASSERT_STREQ("MMMMDXXVIII", test_str);
+  ASSERT_EQ(11, len);
+  free(test_str);
 }
 
-TEST (is_positive, negative_int){
-    int r = is_positive(-233);
-    ASSERT_EQ(-1, r);
+TEST(translate_to_roman, fourth_test) {
+  int len = 0;
+  char* test_str = translate_to_roman(999, &len);
+  ASSERT_STREQ("CMXCIX", test_str);
+  ASSERT_EQ(6, len);
+  free(test_str);
 }
 
-int main(int argc, char** argv){
+TEST(translate_to_roman, fifth_test) {
+  int len = 0;
+  char* test_str = translate_to_roman(1001, &len);
+  ASSERT_STREQ("MI", test_str);
+  ASSERT_EQ(2, len);
+  free(test_str);
+}
 
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+TEST(translate_to_roman, big_integer) {
+  int len = 0;
+  char* test_str = translate_to_roman(10000000000, &len);
+  ASSERT_STREQ("Invalid input", test_str);
+  ASSERT_EQ(0, len);
+  free(test_str);
+}
+
+TEST(translate_to_roman, negative_int) {
+  int len = 0;
+  char* test_str = translate_to_roman(-123, &len);
+  ASSERT_STREQ("Invalid input", test_str);
+  ASSERT_EQ(0, len);
+  free(test_str);
+
+  char* test_str2 = translate_to_roman(-1000000000, &len);
+  ASSERT_STREQ("Invalid input", test_str);
+  ASSERT_EQ(0, len);
+  free(test_str);
+}
+
+TEST(exception, some_errors) {
+  char* test_str = exception("ERROR1");
+  ASSERT_STREQ("ERROR1", test_str);
+  free(test_str);
+
+  char* test_str2 = exception("Value problem");
+  ASSERT_STREQ("ERROR2", test_str2);
+  free(test_str2);
+}
+
+int main(int argc, char** argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

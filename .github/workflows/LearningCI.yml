@@ -1,5 +1,8 @@
 name: 'All tests'
-on: [pull_request, push]
+on: 
+  push:
+    branches:
+      - IZ1
 
 jobs:
 
@@ -25,3 +28,5 @@ jobs:
       run: cppcheck --enable=all --suppress=missingIncludeSystem *.c
     - name: Tests
       run: cd build && make ./tests && ./tests
+    - name: Run Valgrind
+      run: cd build && valgrind --tool=memcheck --leak-check=yes ./tests
