@@ -2,6 +2,7 @@
 
 extern "C" {
 #include "functions.h"
+#include <stdlib.h>
 }
 
 TEST(translate_to_roman, first_test) {
@@ -44,34 +45,47 @@ TEST(translate_to_roman, fifth_test) {
   free(test_str);
 }
 
-TEST(translate_to_roman, big_integer) {
+TEST(translate_to_roman, first_big_integer) {
   int len = 0;
-  char* test_str = translate_to_roman(10000000000, &len);
+  char* test_str = translate_to_roman(10000000, &len);
   ASSERT_STREQ("Invalid input", test_str);
   ASSERT_EQ(0, len);
   free(test_str);
 }
 
-TEST(translate_to_roman, negative_int) {
+TEST(translate_to_roman, second_big_integer) {
+  int len = 0;
+  char* test_str = translate_to_roman(10001, &len);
+  ASSERT_STREQ("Invalid input", test_str);
+  ASSERT_EQ(0, len);
+  free(test_str);
+}
+
+TEST(translate_to_roman, first_negative_int) {
   int len = 0;
   char* test_str = translate_to_roman(-123, &len);
   ASSERT_STREQ("Invalid input", test_str);
   ASSERT_EQ(0, len);
   free(test_str);
+}
 
-  char* test_str2 = translate_to_roman(-1000000000, &len);
+TEST(translate_to_roman, second_negative_int) {
+  int len = 0;
+  char* test_str = translate_to_roman(-10000000, &len);
   ASSERT_STREQ("Invalid input", test_str);
   ASSERT_EQ(0, len);
   free(test_str);
 }
 
 TEST(exception, some_errors) {
-  char* test_str = exception("ERROR1");
-  ASSERT_STREQ("ERROR1", test_str);
+  char error_text[] = "ERROR";
+  char* test_str = exception(error_text);
+  ASSERT_STREQ("ERROR", test_str);
   free(test_str);
 
-  char* test_str2 = exception("Value problem");
-  ASSERT_STREQ("ERROR2", test_str2);
+  char error_text2[] = "Value problem";
+  char* test_str2 = exception(error_text2);
+  ASSERT_STREQ("Value problem", test_str2);
   free(test_str2);
 }
 
