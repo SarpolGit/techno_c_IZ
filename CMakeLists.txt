@@ -14,7 +14,7 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
   append_coverage_compiler_flags()
   setup_target_for_coverage_gcovr_html(
     NAME coverage
-    EXECUTABLE valgrind --leak-check=full --show-leak-kinds=all ctest
+    EXECUTABLE valgrind --leak-check=full --show-leak-kinds=all 
     BASE_DIRECTORY "${PROJECT_SOURCE_DIR}"
     EXCLUDE "build/*" "rome.c" "functions.c" "tests.cpp")
 endif()

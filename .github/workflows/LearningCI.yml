@@ -27,11 +27,7 @@ jobs:
     - name: Run cppcheck
       run: cppcheck --enable=all --suppress=missingIncludeSystem *.c
     - name: Tests
-      run: cd build && make ./tests && ./tests
-    - name: Run Valgrind
-      run: cd build && valgrind --tool=memcheck --leak-check=yes ./tests
-    - name: Coverage testing
-      run: cd build && make coverage 
+      run: cd build && make coverage && ./tests
     - name: Archive code coverage results
       uses: actions/upload-artifact@v2
       with:
