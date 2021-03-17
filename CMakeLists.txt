@@ -6,6 +6,19 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+
+
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+  include(CodeCoverage)
+  append_coverage_compiler_flags()
+  setup_target_for_coverage_gcovr_html(
+    NAME coverage
+    EXECUTABLE valgrind --leak-check=full --show-leak-kinds=all ctest
+    BASE_DIRECTORY "${PROJECT_SOURCE_DIR}"
+    EXCLUDE "rome.c" "functions.c" "tests.cpp")
+endif()
+
 set(SOURCE_EXE rome.c)
 
 set(SOURCE_LIB functions.c)
