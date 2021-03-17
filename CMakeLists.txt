@@ -16,7 +16,7 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
     NAME coverage
     EXECUTABLE valgrind --leak-check=full --show-leak-kinds=all ctest
     BASE_DIRECTORY "${PROJECT_SOURCE_DIR}"
-    EXCLUDE "rome.c" "functions.c" "tests.cpp")
+    EXCLUDE "build/*" "rome.c" "functions.c" "tests.cpp")
 endif()
 
 set(SOURCE_EXE rome.c)
