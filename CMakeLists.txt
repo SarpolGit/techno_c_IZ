@@ -14,9 +14,9 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
   append_coverage_compiler_flags()
   setup_target_for_coverage_gcovr_html(
     NAME coverage
-    EXECUTABLE ctest
+    EXECUTABLE tests
     BASE_DIRECTORY "${PROJECT_SOURCE_DIR}"
-    EXCLUDE "build/*" "rome.c" "functions.c" "tests.cpp")
+    EXCLUDE "build/*" "tests/*" "rome.c")
 endif()
 
 set(SOURCE_EXE rome.c)
@@ -30,14 +30,14 @@ add_executable(main ${SOURCE_EXE})
 target_link_libraries(main my_lib)
 
 enable_testing()
+
+
 find_package(GTest REQUIRED)
 
 include_directories(${GTEST_INCLUDE_DIRS})
 
 
-set(TESTS_EXE tests.cpp )
-
-add_executable(tests ${TESTS_EXE})
+add_executable(tests tests/tests.cpp tests/main.cpp)
 
 
 target_link_libraries(tests ${GTEST_LIBRARIES} -lpthread)

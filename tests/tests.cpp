@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include "functions.h"
+#include "../functions.h"
 #include <stdlib.h>
 }
 
@@ -87,9 +87,4 @@ TEST(exception, some_errors) {
   char* test_str2 = exception(error_text2);
   ASSERT_STREQ("Value problem", test_str2);
   free(test_str2);
-}
-
-int main(int argc, char** argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
 }
