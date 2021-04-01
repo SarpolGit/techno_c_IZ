@@ -21,7 +21,7 @@ jobs:
     - name: Install cppcheck
       run: sudo apt-get install cppcheck -y
     - name: Config
-      run: sh config.sh
+      run: sh script.sh
     - name: Make
       run: cd build && cmake .. && make
     - name: Run without file
