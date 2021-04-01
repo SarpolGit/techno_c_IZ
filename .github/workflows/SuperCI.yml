@@ -26,8 +26,12 @@ jobs:
       run: cd build && cmake .. && make
     - name: Run without file
       run: cd build && ./main -c 
-    - name: Init file and run program
-      run: cd build && ./main -m ../numbers.txt && ./main -f ../numbers.txt
+    - name: Init file and run program1
+      run: cd build && ./main -m ../numbers1.txt && ./main -f ../numbers1.txt
+    - name: Init file and run program2
+      run: cd build && ./main -m ../numbers2.txt && ./main -f ../numbers2.txt
+    - name: Init file and run program3
+      run: cd build && ./main -m ../numbers3.txt && ./main -f ../numbers3.txt
     - name: Run cppcheck
       run: cppcheck --enable=all --suppress=missingIncludeSystem *.c
     - name: Run Valgrind 

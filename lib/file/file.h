@@ -7,3 +7,4 @@
 
 void make_file(char* filename, int amount);
 int file_init_array(char* filename, int* array, int array_length);
+int file_init_array_mmap(char* filename, int* array, int array_length);
