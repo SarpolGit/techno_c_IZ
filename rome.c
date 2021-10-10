@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "functions.h"
-
+//Demonstrate
 int main(void) {
   printf("Write a number:");
 
